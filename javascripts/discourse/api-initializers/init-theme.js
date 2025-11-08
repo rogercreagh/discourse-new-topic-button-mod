@@ -1,5 +1,7 @@
-<script type="text/discourse-plugin" version="0.8">
-	const { iconNode } = require("discourse-common/lib/icon-library");
+import { apiInitializer } from "discourse/lib/api";
+
+export default apiInitializer((api) => {
+  	const { iconNode } = require("discourse-common/lib/icon-library");
 
 	let container = api.container,
 		ntb_text = settings.New_topic_button_text,
@@ -30,7 +32,7 @@
     const h = require("virtual-dom").h;
 
     api.createWidget('new-topic-btn', {
-        tagName: "div.new-topic-btn",    
+        tagName: "div.new-topic-btn",
         	html() {
 	          return h(
     	         ntb_button_helper,
@@ -41,15 +43,6 @@
                 },
                 [iconNode(ntb_icon), h(ntb_label_helper, ntb_text)]
             );
-        }         
+        }
     });
-
-</script>
-
-<script type="text/x-handlebars" data-template-name="/connectors/after-topic-footer-main-buttons/rcofootnewtopic">
-  		{{mount-widget widget="new-topic-btn"}}
-</script>
-
-<script type="text/x-handlebars" data-template-name="/connectors/topic-above-post-stream/rcotitlenewtopic">
-        {{mount-widget widget="new-topic-btn"}}
-</script>
+});
